@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/gads_logo"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:contentDescription="@string/gads_logo"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/gads_header" />
+
+    <TextView
+        android:id="@+id/supported_by"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/supported_text"
+        android:textColor="#060CDB"
+        android:textSize="12sp"
+        android:layout_marginLeft="110dp"
+        android:layout_marginStart="110dp"
+        app:layout_constraintBottom_toTopOf="@+id/andela_logo"
+        app:layout_constraintStart_toStartOf="@id/gads_logo"
+        app:layout_constraintTop_toBottomOf="@id/gads_logo"
+        />
+
+    <View
+        android:layout_width="100dp"
+        android:layout_height="2dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="3dp"
+        android:background="#FF9800"
+        app:layout_constraintBottom_toTopOf="@+id/grow_with_google"
+        app:layout_constraintStart_toEndOf="@id/supported_by"
+        app:layout_constraintTop_toBottomOf="@id/gads_logo" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="167dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="384dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="400dp"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/pluralsight_logo"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:contentDescription="@string/pluralsight_logo"
+        android:scaleType="fitCenter"
+        android:layout_marginStart="110dp"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintStart_toStartOf="@id/gads_logo"
+        app:layout_constraintTop_toBottomOf="@id/gads_logo"
+        app:srcCompat="@drawable/pluralsight_logo" />
+
+    <ImageView
+        android:id="@+id/andela_logo"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="340dp"
+        android:contentDescription="@string/andela_logo"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toStartOf="@+id/grow_with_google"
+        app:layout_constraintStart_toEndOf="@+id/pluralsight_logo"
+        app:layout_constraintTop_toBottomOf="@id/gads_logo"
+        app:srcCompat="@drawable/andela_logo" />
+
+    <ImageView
+        android:id="@+id/grow_with_google"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:contentDescription="@string/grow_with_google_logo"
+        android:scaleType="centerCrop"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="340dp"
+        app:layout_constraintStart_toEndOf="@+id/andela_logo"
+        app:layout_constraintTop_toBottomOf="@id/gads_logo"
+        app:srcCompat="@drawable/grow_with_google_logo" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

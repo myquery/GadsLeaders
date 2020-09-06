@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">LEADERBOARD</string>
+    <string name="supported_text">Supported by</string>
+    <string name="gads_logo">Gads Leadership Listing</string>
+    <string name="pluralsight_logo">Pluralsight Logo</string>
+    <string name="andela_logo">AndelaLogo</string>
+    <string name="grow_with_google_logo">Grow with Google</string>
+    <string name="title_activity_leader_listing">LeaderListing</string>
+    <string name="leader_board">leaderBoard</string>
+    <string name="skill_board">SkillIQ leaders</string>
+    <string name="button_text">Submit</string>
+</resources>
