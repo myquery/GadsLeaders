@@ -2,16 +2,17 @@ package com.example.gadsleaders;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class DisplaySubmitForm extends AppCompatActivity {
 
@@ -38,40 +39,65 @@ public class DisplaySubmitForm extends AppCompatActivity {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String emailAddr = emailAddress.getText().toString();
-                String nameField = name.getText().toString();
-                String lastNameField = lastName.getText().toString();
-                String githubLink = linkToGithub.getText().toString();
-                submitProjectToGoogleForm(emailAddr, nameField, lastNameField, githubLink);
+                confirmation();
             }
         });
     }
 
+    private void successDialog() {
+        new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+                .setTitleText("Submission Successful")
+                .setCustomImage(R.drawable.success)
+                .hideConfirmButton()
+                .show();
+    }
+
+    private void errorDialog() {
+        new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+                .setTitleText("Submission not successful")
+                .setCustomImage(R.drawable.error)
+                .hideConfirmButton()
+                .show();
+    }
+
+    private void confirmation() {
+        new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                .setTitleText("Are you sure ?")
+                .setConfirmButtonBackgroundColor(Color.rgb(250, 162, 43))
+                .setConfirmClickListener(sweetAlertDialog -> {
+                    sendConfirmation();
+                    sweetAlertDialog.dismissWithAnimation();
+                }).show();
+    }
 
     public void submitProjectToGoogleForm(String email, String name, String lastName, String githubLink) {
-        progressBtn.setVisibility(View.VISIBLE);
-
-        ProjectEntryForm projectEntryForm = new ProjectEntryForm();
-
-        Call<ProjectEntryForm> formToGoogle = APiClient.submitProject().submtProject(projectEntryForm);
+        Call<ProjectEntryForm> formToGoogle = APiClient.submitProject().submitProject(email, name, lastName, githubLink);
 
         formToGoogle.enqueue(new Callback<ProjectEntryForm>() {
             @Override
             public void onResponse(Call<ProjectEntryForm> call, Response<ProjectEntryForm> response) {
-                progressBtn.setVisibility(View.GONE);
+                // progressBtn.setVisibility(View.GONE);
 
-                Toast.makeText(DisplaySubmitForm.this, "Entry Submitted", Toast.LENGTH_LONG).show();
+                successDialog();
 
             }
 
             @Override
             public void onFailure(Call<ProjectEntryForm> call, Throwable t) {
-                progressBtn.setVisibility(View.GONE);
-                Toast.makeText(DisplaySubmitForm.this, "Error submitting Entry" + t, Toast.LENGTH_LONG).show();
+                //progressBtn.setVisibility(View.GONE);
+                errorDialog();
 
 
             }
         });
 
+    }
+
+    private void sendConfirmation() {
+        String emailAddr = emailAddress.getText().toString();
+        String nameField = name.getText().toString();
+        String lastNameField = lastName.getText().toString();
+        String githubLink = linkToGithub.getText().toString();
+        submitProjectToGoogleForm(emailAddr, nameField, lastNameField, githubLink);
     }
 }

@@ -1,7 +1,6 @@
 package com.example.gadsleaders.ui.main;
 
 import android.content.Context;
-import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -17,7 +16,6 @@ import com.example.gadsleaders.SkillLeader;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to

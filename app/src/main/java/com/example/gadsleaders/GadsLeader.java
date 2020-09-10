@@ -3,11 +3,6 @@ package com.example.gadsleaders;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.io.Serializable;
-import java.util.List;
-
-import retrofit2.Call;
-
 
 public class GadsLeader implements Parcelable {
     private String name;

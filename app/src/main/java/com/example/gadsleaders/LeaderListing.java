@@ -3,31 +3,22 @@ package com.example.gadsleaders;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.gadsleaders.ui.main.SectionsPagerAdapter;
 
-import org.parceler.Parcels;
-
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.GET;
 
 public class LeaderListing extends AppCompatActivity {
     private static final String TOP_LEARNERS_LEADERS = "top_learning_leaders";
