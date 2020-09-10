@@ -29,14 +29,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:text="@string/button_text"
-                android:background="@drawable/rounded_btn"
+                android:id="@+id/display_submit_form"
                 android:textColor="@color/colorPrimary"
                 android:textSize="12sp"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
-
-                />
+                android:colorBackground="@drawable/gadsleader_bkg" />
 
         </RelativeLayout>
 

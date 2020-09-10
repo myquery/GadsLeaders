@@ -7,15 +7,20 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
 
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.http.GET;
+
 public class MainActivity extends AppCompatActivity {
-    static private int DELAY = 5000;
+    static private int DELAY = 1500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -26,4 +31,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }, DELAY);
     }
+
+
 }
