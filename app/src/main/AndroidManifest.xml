@@ -11,14 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.gadsleaders.DisplaySubmitForm">
-
-        </activity>
+        <activity android:name=".SubmissionConfirmation"></activity>
+        <activity android:name=".DisplaySubmitForm"></activity>
         <activity
-            android:name="com.example.gadsleaders.LeaderListing"
+            android:name=".LeaderListing"
             android:label="@string/title_activity_leader_listing"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.example.gadsleaders.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

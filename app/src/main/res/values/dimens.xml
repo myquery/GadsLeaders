@@ -24,4 +24,5 @@
     <dimen name="button_padding">60dp</dimen>
     <dimen name="margin_top">50dp</dimen>
     <dimen name="margin_top_extra_large">120dp</dimen>
+    <dimen name="submit_corners">20dp</dimen>
 </resources>

@@ -4,8 +4,9 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryVariant">@color/colorAccent</item>
+        <item name="colorPrimarySurface">@color/colorSecondary</item>
+        <item name="android:windowDisablePreview">true</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -13,8 +14,24 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar">
+        <item name="colorPrimarySurface">@color/colorSecondary</item>
+    </style>
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
+
+    <style name="AppDialogTheme" parent="Theme.MaterialComponents.DayNight.Dialog.Alert">
+        <item name="android:background">@color/dialog</item>
+    </style>
+
+    <style name="AppTheme.TabLayout" parent="Widget.MaterialComponents.TabLayout.Colored">
+        <item name="tabIndicatorColor">@color/colorOnPrimary</item>
+        <item name="android:color">@color/colorOnPrimary</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="tabTextAppearance">?attr/textAppearanceButton</item>
+        <item name="tabTextColor">@color/colorOnPrimary</item>
+        <item name="enforceMaterialTheme">true</item>
+        <item name="enforceTextAppearance">true</item>
+    </style>
 
 </resources>

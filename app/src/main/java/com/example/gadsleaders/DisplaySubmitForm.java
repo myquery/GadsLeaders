@@ -2,12 +2,15 @@ package com.example.gadsleaders;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+
+import java.io.Serializable;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -16,12 +19,23 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class DisplaySubmitForm extends AppCompatActivity {
 
+    private static final String EMAIL_ADDRESS = "EMAIL_ADDRESS";
+    private static final String FIRST_NAME = "FIRST_NAME";
+    private static final String LAST_NAME = "LAST_NAME";
+    private static final String GITHUB_LINK = "GITHUB_LINK";
     EditText emailAddress;
     EditText name;
     EditText lastName;
     EditText linkToGithub;
     Button confirmButton;
     ProgressBar progressBtn;
+
+    //static property to store thr form fields
+    //property of the form field value
+    String emailAddr;
+    String nameField;
+    String lastNameField;
+    String githubLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,65 +53,27 @@ public class DisplaySubmitForm extends AppCompatActivity {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                confirmation();
+                sendConfirmation();
+                Intent intent = new Intent(DisplaySubmitForm.this, SubmissionConfirmation.class);
+                Bundle bundle = new Bundle();
+                bundle.putString(EMAIL_ADDRESS, emailAddr);
+                bundle.putString(FIRST_NAME, nameField);
+                bundle.putString(LAST_NAME, lastNameField);
+                bundle.putString(GITHUB_LINK, githubLink);
+                intent.putExtras(bundle);
+                startActivity(intent);
+                //confirmation();
             }
         });
     }
 
-    private void successDialog() {
-        new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
-                .setTitleText("Submission Successful")
-                .setCustomImage(R.drawable.success)
-                .hideConfirmButton()
-                .show();
+    public void sendConfirmation() {
+        emailAddr = emailAddress.getText().toString();
+        nameField = name.getText().toString();
+        lastNameField = lastName.getText().toString();
+        githubLink = linkToGithub.getText().toString();
+        //submitProjectToGoogleForm(emailAddr, nameField, lastNameField, githubLink);
     }
 
-    private void errorDialog() {
-        new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
-                .setTitleText("Submission not successful")
-                .setCustomImage(R.drawable.error)
-                .hideConfirmButton()
-                .show();
-    }
 
-    private void confirmation() {
-        new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-                .setTitleText("Are you sure ?")
-                .setConfirmButtonBackgroundColor(Color.rgb(250, 162, 43))
-                .setConfirmClickListener(sweetAlertDialog -> {
-                    sendConfirmation();
-                    sweetAlertDialog.dismissWithAnimation();
-                }).show();
-    }
-
-    public void submitProjectToGoogleForm(String email, String name, String lastName, String githubLink) {
-        Call<ProjectEntryForm> formToGoogle = APiClient.submitProject().submitProject(email, name, lastName, githubLink);
-
-        formToGoogle.enqueue(new Callback<ProjectEntryForm>() {
-            @Override
-            public void onResponse(Call<ProjectEntryForm> call, Response<ProjectEntryForm> response) {
-                // progressBtn.setVisibility(View.GONE);
-
-                successDialog();
-
-            }
-
-            @Override
-            public void onFailure(Call<ProjectEntryForm> call, Throwable t) {
-                //progressBtn.setVisibility(View.GONE);
-                errorDialog();
-
-
-            }
-        });
-
-    }
-
-    private void sendConfirmation() {
-        String emailAddr = emailAddress.getText().toString();
-        String nameField = name.getText().toString();
-        String lastNameField = lastName.getText().toString();
-        String githubLink = linkToGithub.getText().toString();
-        submitProjectToGoogleForm(emailAddr, nameField, lastNameField, githubLink);
-    }
 }

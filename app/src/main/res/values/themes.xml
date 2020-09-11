@@ -7,4 +7,5 @@
         <item name="colorOnBackground">@color/colorOnBackground</item>
         <item name="android:windowBackground">@color/colorSecondary</item>
     </style>
+
 </resources>

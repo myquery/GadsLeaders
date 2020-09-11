@@ -71,7 +71,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="10dp">
+
+            android:paddingBottom="30dp">
 
             <TextView
                 android:id="@+id/title"
@@ -173,7 +174,7 @@
                 app:layout_constraintStart_toStartOf="@id/emailEditText"
                 app:layout_constraintTop_toBottomOf="@id/emailEditText" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/confirmButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -183,6 +184,7 @@
                 android:paddingEnd="@dimen/button_padding"
                 android:text="@string/submit"
                 android:textAllCaps="false"
+                android:textAppearance="?attr/textAppearanceButton"
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/text_size"
                 android:textStyle="bold"
