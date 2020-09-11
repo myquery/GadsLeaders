@@ -3,6 +3,7 @@
     <color name="colorPrimary">#000000</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#f1a742</color>
+    <color name="colorPrimaryVariant">#f1a742</color>
     <color name="colorOnBackground">#F3EFEF</color>
     <color name="buttonBkg">#ffffff</color>
     <color name="colorSecondary">#ffffff</color>
@@ -10,4 +11,5 @@
     <color name="black_overlay">#66000000</color>
     <color name="success">#05920b</color>
     <color name="error">#FF0000</color>
+    <color name="dialog">#5B5858</color>
 </resources>

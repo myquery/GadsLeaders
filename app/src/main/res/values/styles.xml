@@ -4,8 +4,9 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryVariant">@color/colorAccent</item>
+        <item name="colorPrimarySurface">@color/colorSecondary</item>
+        <item name="android:windowDisablePreview">true</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -16,5 +17,9 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
+
+    <style name="AppDialogTheme" parent="Theme.MaterialComponents.DayNight.Dialog.Alert.Bridge">
+        <item name="android:background">@color/dialog</item>
+    </style>
 
 </resources>

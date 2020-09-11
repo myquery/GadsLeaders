@@ -1,10 +1,20 @@
 package com.example.gadsleaders;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -16,35 +26,40 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class DisplaySubmitForm extends AppCompatActivity {
 
-    EditText emailAddress;
-    EditText name;
-    EditText lastName;
-    EditText linkToGithub;
-    Button confirmButton;
-    ProgressBar progressBtn;
+    private static final String BACK_STACK_ROOT_TAG = "root_fragment";
+    private static final String SUBMIT_TAG_BACK = "submit_fragment";
+    private GetConfirmTrigger getConfirmTrigger;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_submit_form);
 
-        emailAddress = findViewById(R.id.emailEditText);
-        name = findViewById(R.id.firstNameEditText);
-        lastName = findViewById(R.id.lastNameEditText);
-        linkToGithub = findViewById(R.id.githubLinkEditText);
-        confirmButton = findViewById(R.id.confirmButton);
 
-        progressBtn = findViewById(R.id.submitProgressBar);
-
-        confirmButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                confirmation();
-            }
-        });
+        showSubmitProjectForm();
     }
 
-    private void successDialog() {
+
+    private void showSubmitProjectForm() {
+        SubmitProjectFragment fragment = new SubmitProjectFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.popBackStack(BACK_STACK_ROOT_TAG, 0);
+        fragmentManager.beginTransaction()
+                .add(R.id.submit_project_fragment_container, fragment)
+                .addToBackStack(BACK_STACK_ROOT_TAG)
+                .commit();
+    }
+
+    public void showDialogSubmitProject() {
+        ConfirmFragment fragment = new ConfirmFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.submit_project_fragment_container, fragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public void successDialog() {
         new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
                 .setTitleText("Submission Successful")
                 .setCustomImage(R.drawable.success)
@@ -52,7 +67,7 @@ public class DisplaySubmitForm extends AppCompatActivity {
                 .show();
     }
 
-    private void errorDialog() {
+    public void errorDialog() {
         new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
                 .setTitleText("Submission not successful")
                 .setCustomImage(R.drawable.error)
@@ -60,7 +75,9 @@ public class DisplaySubmitForm extends AppCompatActivity {
                 .show();
     }
 
-    private void confirmation() {
+    public void confirmation() {
+
+
         new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
                 .setTitleText("Are you sure ?")
                 .setConfirmButtonBackgroundColor(Color.rgb(250, 162, 43))
@@ -70,34 +87,16 @@ public class DisplaySubmitForm extends AppCompatActivity {
                 }).show();
     }
 
-    public void submitProjectToGoogleForm(String email, String name, String lastName, String githubLink) {
-        Call<ProjectEntryForm> formToGoogle = APiClient.submitProject().submitProject(email, name, lastName, githubLink);
 
-        formToGoogle.enqueue(new Callback<ProjectEntryForm>() {
-            @Override
-            public void onResponse(Call<ProjectEntryForm> call, Response<ProjectEntryForm> response) {
-                // progressBtn.setVisibility(View.GONE);
+    public void sendConfirmation() {
 
-                successDialog();
-
-            }
-
-            @Override
-            public void onFailure(Call<ProjectEntryForm> call, Throwable t) {
-                //progressBtn.setVisibility(View.GONE);
-                errorDialog();
-
-
-            }
-        });
+        getConfirmTrigger.sendConfirmation();
 
     }
 
-    private void sendConfirmation() {
-        String emailAddr = emailAddress.getText().toString();
-        String nameField = name.getText().toString();
-        String lastNameField = lastName.getText().toString();
-        String githubLink = linkToGithub.getText().toString();
-        submitProjectToGoogleForm(emailAddr, nameField, lastNameField, githubLink);
+    public interface GetConfirmTrigger {
+        void sendConfirmation();
     }
+
+
 }
